@@ -1,29 +1,31 @@
-{% extends 'base.html' %} {% block content %}
-<main>
-    <div>
-        <h1>My Projects</h1>
-        {% if not list_projects %}
-            <p>You are not assigned to any projects</p>
-        {% else %}
-            <table>
-                <tr>
-                    <thead>
-                        Name
-                    </thead>
-                    <thead>
-                        Number of tasks
-                    </thead>
-                </tr>
-                <tbody>
-                    {% for project in list_projects %}
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+        <div>
+            <h1>My Projects</h1>
+            {% if not list_projects %}
+                <p>You are not assigned to any projects</p>
+            {% else %}
+                <table>
                     <tr>
-                        <td>{{ project.name }}</td>
-                        <td>{{ project|length }}</td>
+                        <thead>
+                            Name
+                        </thead>
+                        <thead>
+                            Number of tasks
+                        </thead>
                     </tr>
-                </tbody>
+                    <tbody>
+                        {% for project in list_projects %}
+                            <tr>
+                                <td>{{ project.name }}</td>
+                                <td>{{ project|length }}</td>
+                            </tr>
+                        </tbody>
                     {% endfor %}
-            </table>
-        {% endif %}
-    </div>
-</main>
+                </table>
+            {% endif %}
+        </div>
+    </main>
 {% endblock content %}

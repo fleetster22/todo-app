@@ -6,7 +6,7 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     owner = models.ForeignKey(
-        "auth.User",
+        User,
         related_name="projects",
         on_delete=models.CASCADE,
         null=True,

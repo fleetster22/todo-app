@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from accounts.forms import LoginForm
 
 
+# validates user before loggin in, otherwise to "home"
 def user_login(request):
     if request.method == "GET":
         form = LoginForm()
@@ -26,3 +27,8 @@ def user_login(request):
         "form": form,
     }
     return render(request, "accounts/login.html", context)
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("login")

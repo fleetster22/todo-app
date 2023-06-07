@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Project(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
+    description = models.TextField(max_length=200)
     owner = models.ForeignKey(
         User,
         related_name="projects",

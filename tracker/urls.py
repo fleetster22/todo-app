@@ -17,14 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from rest_framework import routers
+from projects.views import ProjectView
 
 
-def redirect_to_list_project(request):
-    return redirect("list_projects")
+router = routers.DefaultRouter()
+router.register(r"projects", ProjectView, basename="projects")
+
+
+# def redirect_to_user_login(request):
+#     return redirect("user_login")
 
 
 urlpatterns = [
-    path("", redirect_to_list_project, name="home"),
+    # path("", redirect_to_user_login, name="home"),
+    path("", include(router.urls)),
     path("admin/", admin.site.urls),
     path("projects/", include("projects.urls")),
     path("accounts/", include("accounts.urls")),

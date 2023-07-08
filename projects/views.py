@@ -1,7 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from projects.models import Project
-from projects.forms import ProjectForm
+from rest_framework import viewsets
+from .serializers import ProjectSerializer
+from .models import Project
+from .forms import ProjectForm
+
+
+class ProjectView(viewsets.ModelViewSet):
+    serializer_class = ProjectSerializer
+    queryset = Project.objects.all()
 
 
 @login_required

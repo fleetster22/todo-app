@@ -21,7 +21,7 @@ def user_login(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect("home")
+                return redirect("list_projects")
 
     context = {
         "form": form,

@@ -19,10 +19,12 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from rest_framework import routers
 from projects.views import ProjectView
+from tasks.views import TaskView
 
 
 router = routers.DefaultRouter()
-router.register(r"projects", ProjectView, basename="projects")
+router.register(r"projects", ProjectView, "project")
+router.register(r"tasks", TaskView, "task")
 
 
 # def redirect_to_user_login(request):
@@ -31,8 +33,8 @@ router.register(r"projects", ProjectView, basename="projects")
 
 urlpatterns = [
     # path("", redirect_to_user_login, name="home"),
-    path("", include(router.urls)),
     path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
     path("projects/", include("projects.urls")),
     path("accounts/", include("accounts.urls")),
     path("tasks/", include("tasks.urls")),

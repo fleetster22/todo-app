@@ -1,7 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from tasks.forms import TaskForm
-from tasks.models import Task
+from rest_framework import viewsets
+from .forms import TaskForm
+from .models import Task
+from .serializers import TaskSerializer
+
+
+class TaskView(viewsets.ModelViewSet):
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()
 
 
 @login_required
